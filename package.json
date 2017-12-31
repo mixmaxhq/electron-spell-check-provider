@@ -1,6 +1,6 @@
 {
   "name": "electron-spell-check-provider",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Because Electron's spell-check APIs are just a little too low-level.",
   "main": "src/index.js",
   "scripts": {
