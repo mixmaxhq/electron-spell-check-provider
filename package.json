@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/mixmaxhq/electron-spell-check-provider#readme",
   "dependencies": {
-    "spellchecker": "^3.2.1",
+    "spellchecker": "^3.4.4",
     "underscore": "^1.8.3"
   }
 }
