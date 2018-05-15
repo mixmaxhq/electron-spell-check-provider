@@ -26,5 +26,8 @@
   "dependencies": {
     "spellchecker": "^3.4.4",
     "underscore": "^1.8.3"
+  },
+  "engines": {
+    "yarn": "YARN NO LONGER USED - use npm instead."
   }
 }

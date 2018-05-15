@@ -26,7 +26,7 @@ webFrame.setSpellCheckProvider('en-US', true, new SpellCheckProvider('en-US'));
 ## Installation
 
 ```js
-yarn add electron-spell-check-provider
+npm install electron-spell-check-provider
 ```
 or
 ```js
