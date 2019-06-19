@@ -4,7 +4,7 @@ Electron's [spell-check API][setSpellCheckProvider] looks straightforward… unt
 you have to pull in and configure `node-spellchecker`:
 
 ```diff
-webFrame.setSpellCheckProvider('en-US', true, {
+webFrame.setSpellCheckProvider('en-US', {
 spellCheck: function(text) {
 +  return !(require('spellchecker').isMisspelled(text));
 }
@@ -20,7 +20,7 @@ And only underlines misspelled words, leaving you to show suggestions [yourself]
 Or you can use this module:
 
 ```js
-webFrame.setSpellCheckProvider('en-US', true, new SpellCheckProvider('en-US'));
+webFrame.setSpellCheckProvider('en-US', new SpellCheckProvider('en-US'));
 ```
 
 ## Installation
@@ -42,7 +42,7 @@ _Note:_ This uses a native module, so you will need to [rebuild your modules][re
 var webFrame = require('electron').webFrame;
 var SpellCheckProvider = require('electron-spell-check-provider');
 
-webFrame.setSpellCheckProvider('en-US', true, new SpellCheckProvider('en-US'));
+webFrame.setSpellCheckProvider('en-US', new SpellCheckProvider('en-US'));
 ```
 
 'en-US' is the only supported language at present.
@@ -54,7 +54,7 @@ If the current word is misspelled, the provider will emit a `'misspelling'` even
 with spelling suggestions:
 
 ```js
-webFrame.setSpellCheckProvider('en-US', true,
+webFrame.setSpellCheckProvider('en-US',
   new SpellCheckProvider('en-US').on('misspelling', function(suggestions) {
     console.log('The text at the site of the cursor is misspelled.',
       'Maybe the user meant to type:', suggestions);
@@ -99,9 +99,6 @@ window.addEventListener('mousedown', resetSelection);
 // Thus, we may retrieve spell-checking suggestions to put in the menu just before it shows.
 webFrame.setSpellCheckProvider(
   'en-US',
-  // Not sure what this parameter (`autoCorrectWord`) does: https://github.com/atom/electron/issues/4371
-  // The documentation for `webFrame.setSpellCheckProvider` passes `true` so we do too.
-  true,
   new SpellCheckProvider('en-US').on('misspelling', function(suggestions) {
     // Prime the context menu with spelling suggestions _if_ the user has selected text. Electron
     // may sometimes re-run the spell-check provider for an outdated selection e.g. if the user
